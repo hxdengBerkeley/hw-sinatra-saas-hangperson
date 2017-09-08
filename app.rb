@@ -29,8 +29,11 @@ class HangpersonApp < Sinatra::Base
     # NOTE: don't change next line - it's needed by autograder!
     word = params[:word] || HangpersonGame.get_random_word
     # NOTE: don't change previous line - it's needed by autograder!
-
+    
+    #Call the HangpersonGame class method get_random_word
+    #Create a new instance of HangpersonGame using that word
     @game = HangpersonGame.new(word)
+    #Redirect the browser to the show action
     redirect '/show'
   end
   
@@ -38,8 +41,12 @@ class HangpersonApp < Sinatra::Base
   # If a guess is repeated, set flash[:message] to "You have already used that letter."
   # If a guess is invalid, set flash[:message] to "Invalid guess."
   post '/guess' do
+    #Extract the letter submitted on the form. 
     letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ###
+    #Use that letter as a guess on the current game.
+    @game.guess(letter)
+    #Redirect to the show action so the player can see the result of their guess. 
     redirect '/show'
   end
   
