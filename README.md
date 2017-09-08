@@ -1,4 +1,4 @@
-Heroku: thawing-lowlands-74951.herokuapp.com(thawing-lowlands-74951.herokuapp.com)
+Heroku:[thawing-lowlands-74951.herokuapp.com] (thawing-lowlands-74951.herokuapp.com)
 
 Hangperson: a scaffolded (!) ESaaS getting-started assignment
 =============================================================
