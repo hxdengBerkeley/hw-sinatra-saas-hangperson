@@ -45,15 +45,12 @@ class HangpersonApp < Sinatra::Base
     letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ###
     #Use that letter as a guess on the current game.
-    @game.guess(letter)
-    #Redirect to the show action so the player can see the result of their guess. 
-    if @game.check_win_or_lose==:play
-        redirect '/show'
-    elsif @game.check_win_or_lose==:lose
-        redirect '/lose'
-    else @game.check_win_or_lose==:win
-        redirect '/win'
+    res = @game.guess(letter)
+    if res ==false
+      flash[:message] = "You have already used that letter."
     end
+    #Redirect to the show action so the player can see the result of their guess. 
+    redirect '/show'
   end
   
   # Everytime a guess is made, we should eventually end up at this route.
@@ -63,7 +60,14 @@ class HangpersonApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
-    erb :show # You may change/remove this line
+    if @game.check_win_or_lose==:play
+        erb :show
+    elsif @game.check_win_or_lose==:lose
+        redirect '/lose'
+    else @game.check_win_or_lose==:win
+        redirect '/win'
+    end
+     # You may change/remove this line
   end
   
   get '/win' do
