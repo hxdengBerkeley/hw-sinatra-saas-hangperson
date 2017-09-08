@@ -23,5 +23,18 @@ class HangpersonGame
       return http.post(uri, "").body
     }
   end
-
+  
+  # Return the word of HangpersonGame
+  def word
+    return @word
+  end
+  
+  # Return the guesses of HangpersonGame
+  def guesses
+    return ''
+  end
+  # Return the guesses of HangpersonGame
+  def wrong_guesses
+    return ''
+  end
 end
