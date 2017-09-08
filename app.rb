@@ -45,9 +45,13 @@ class HangpersonApp < Sinatra::Base
     letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ###
     #Use that letter as a guess on the current game.
-    res = @game.guess(letter)
-    if res ==false
-      flash[:message] = "You have already used that letter."
+    begin
+      res = @game.guess(letter)
+      if res ==false
+        flash[:message] = "You have already used that letter."
+      end
+    rescue
+      flash[:message] = "Invalid input."
     end
     #Redirect to the show action so the player can see the result of their guess. 
     redirect '/show'
