@@ -47,7 +47,13 @@ class HangpersonApp < Sinatra::Base
     #Use that letter as a guess on the current game.
     @game.guess(letter)
     #Redirect to the show action so the player can see the result of their guess. 
-    redirect '/show'
+    if @game.check_win_or_lose==:play
+        redirect '/show'
+    elsif @game.check_win_or_lose==:lose
+        redirect '/lose'
+    else @game.check_win_or_lose==:win
+        redirect '/win'
+    end
   end
   
   # Everytime a guess is made, we should eventually end up at this route.
